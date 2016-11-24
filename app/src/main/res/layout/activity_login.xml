@@ -13,10 +13,12 @@
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Material.Light.ProgressBar.Large"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
         android:layout_marginBottom="8dp"
+        android:fitsSystemWindows="false"
+        android:layout_marginTop="130dp"
         android:visibility="gone" />
 
     <ScrollView
