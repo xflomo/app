@@ -66,15 +66,16 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
         try
         {
             //ADD THAT DATA TO JSON ARRAY FIRST
-            JSONObject ja=new JSONObject(data);
+            JSONArray ja=new JSONArray(data);
             //CREATE JO OBJ TO HOLD A SINGLE ITEM
             JSONObject jo=null;
             players.clear();
             //LOOP THRU ARRAY
             for(int i=0;i<ja.length();i++)
             {
+                jo=ja.getJSONObject(i);
                 //RETRIOEVE NAME
-                String name=ja.getString("Name");
+                String name=jo.getString("Name");
                 //ADD IT TO OUR ARRAYLIST
                 players.add(name);
             }
