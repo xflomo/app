@@ -20,7 +20,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class NavAction extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -136,7 +142,9 @@ public class NavAction extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            ListView databaseList = (ListView) findViewById(R.id.databaseList);
+            final Downloader d=new Downloader(this,"http://app.fb-dev.de/?appVerifier=eduardFlorianMotherfuckergang",databaseList);
+            d.execute();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
