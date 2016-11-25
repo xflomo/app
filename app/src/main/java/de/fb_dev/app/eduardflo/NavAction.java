@@ -4,7 +4,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.TaskStackBuilder;
@@ -18,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class NavAction extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +29,7 @@ public class NavAction extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_action);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,6 +50,14 @@ public class NavAction extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        TextView username = (TextView) header.findViewById(R.id.textViewUsername);
+
+        // Set Username from Settings
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        username.setText(pref.getString("example_text", null));
+
+        // TODO Add Changelistener if User change name refresh name in nav header
     }
 
     @Override
@@ -91,6 +103,7 @@ public class NavAction extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(NavAction.this, LoginActivity.class));
         } else if (id == R.id.nav_slideshow) {
+            // TODO Auslagern in eigene Klasse
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.drawable.ic_menu_share)
@@ -117,7 +130,7 @@ public class NavAction extends AppCompatActivity
             NotificationManager mNotificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             // mId allows you to update the notification later on.
-            mNotificationManager.notify(2, mBuilder.build());
+            mNotificationManager.notify(1, mBuilder.build());
         } else if (id == R.id.nav_manage) {
             startActivity(new Intent(NavAction.this, SettingsActivity.class));
         } else if (id == R.id.nav_share) {
@@ -129,10 +142,5 @@ public class NavAction extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onPause(){
-
     }
 }
