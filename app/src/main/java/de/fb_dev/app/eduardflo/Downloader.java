@@ -44,6 +44,8 @@ public class Downloader extends AsyncTask<Void,Integer,String> {
         pd.dismiss();;
         if(s != null)
         {
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            System.out.println(s);
             Parser p=new Parser(c,s,lv);
             p.execute();
         }else

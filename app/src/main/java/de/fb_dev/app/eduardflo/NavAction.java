@@ -39,12 +39,17 @@ public class NavAction extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // MYSQL Access
+        ListView databaseList = (ListView) findViewById(R.id.databaseList);
+        final Downloader d=new Downloader(this ,"http://app.fb-dev.de/?appVerifier=eduardFlorianMotherfuckergang",databaseList);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                d.execute();
             }
         });
 
@@ -142,9 +147,7 @@ public class NavAction extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-            ListView databaseList = (ListView) findViewById(R.id.databaseList);
-            final Downloader d=new Downloader(this,"http://app.fb-dev.de/?appVerifier=eduardFlorianMotherfuckergang",databaseList);
-            d.execute();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
