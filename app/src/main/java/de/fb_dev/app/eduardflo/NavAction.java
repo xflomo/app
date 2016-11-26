@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +23,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -30,6 +36,8 @@ import java.net.URL;
 
 public class NavAction extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class NavAction extends AppCompatActivity
 
         // MYSQL Access
         ListView databaseList = (ListView) findViewById(R.id.databaseList);
-        final Downloader d=new Downloader(this ,"http://app.fb-dev.de/?appVerifier=eduardFlorianMotherfuckergang",databaseList);
+        final Downloader d=new Downloader(this ,"http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames",databaseList);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +77,16 @@ public class NavAction extends AppCompatActivity
         username.setText(pref.getString("example_text", null));
 
         // TODO Add Changelistener if User change name refresh name in nav header
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        String token = FirebaseInstanceId.getInstance().getToken();
+
+        // Log and toast
+//        String msg = "InstanceID Token " + token;
+//        Log.d(TAG, msg);
+
+
     }
 
     @Override

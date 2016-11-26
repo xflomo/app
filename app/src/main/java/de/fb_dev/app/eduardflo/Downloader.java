@@ -41,11 +41,9 @@ public class Downloader extends AsyncTask<Void,Integer,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        pd.dismiss();;
+        pd.dismiss();
         if(s != null)
         {
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            System.out.println(s);
             Parser p=new Parser(c,s,lv);
             p.execute();
         }else

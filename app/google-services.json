@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "431542027104",
+    "firebase_url": "https://edufloapp-7f7b5.firebaseio.com",
+    "project_id": "edufloapp-7f7b5",
+    "storage_bucket": "edufloapp-7f7b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431542027104:android:80f3a10d25a794b8",
+        "android_client_info": {
+          "package_name": "de.fb_dev.app.eduardflo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431542027104-h3ejedhgq7khgkcf4nvfkea72v3g3ndj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQfol5P1xl_77RQHw0O5rg_BQxWI5MhHc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
