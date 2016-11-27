@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,8 +31,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -50,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "flo@edu.com:hello"
+            "a@b.com:hello"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -317,7 +326,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // If authentication is successfull switch activity
             // TODO: set up Login-Funktion with Network
 
-
+            // Add Token to Database
+            String token = FirebaseInstanceId.getInstance().getToken();
+            sendRegistrationToServer(token, 1);
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
@@ -349,6 +360,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+        private void sendRegistrationToServer(String token, Integer userId) {
+            //TODO userId is set in Php code change it if userlogin exitsts
+            OkHttpClient client = new OkHttpClient();
+            RequestBody body = new FormBody.Builder()
+                    .add("token",token)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url("http://www.app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=addToken")
+                    .post(body)
+                    .build();
+
+            try {
+                client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -23,16 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class NavAction extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,16 +67,6 @@ public class NavAction extends AppCompatActivity
         username.setText(pref.getString("example_text", null));
 
         // TODO Add Changelistener if User change name refresh name in nav header
-
-
-        FirebaseMessaging.getInstance().subscribeToTopic("test");
-        String token = FirebaseInstanceId.getInstance().getToken();
-
-        // Log and toast
-//        String msg = "InstanceID Token " + token;
-//        Log.d(TAG, msg);
-
-
     }
 
     @Override
@@ -132,6 +112,10 @@ public class NavAction extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(NavAction.this, LoginActivity.class));
         } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+            startActivity(new Intent(NavAction.this, SettingsActivity.class));
+        } else if (id == R.id.nav_share) {
             // TODO Auslagern in eigene Klasse
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
@@ -160,9 +144,6 @@ public class NavAction extends AppCompatActivity
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             // mId allows you to update the notification later on.
             mNotificationManager.notify(1, mBuilder.build());
-        } else if (id == R.id.nav_manage) {
-            startActivity(new Intent(NavAction.this, SettingsActivity.class));
-        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
