@@ -41,10 +41,9 @@ public class NavAction extends AppCompatActivity
         final Context context        = this;
         final String address    = "http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames";
         final ListView dbList   = databaseList;
-        //final Downloader d=new Downloader(this ,"http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames",databaseList);
-        EditText sendMsgBox = (EditText) findViewById(R.id.sendMsgBox);
-
         final Downloader d=new Downloader(this ,"http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames",databaseList);
+        d.execute();
+        EditText sendMsgBox = (EditText) findViewById(R.id.sendMsgBox);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
