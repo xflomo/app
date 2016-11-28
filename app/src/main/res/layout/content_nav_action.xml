@@ -18,28 +18,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="1"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentLeft="true">
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="419dp"
+            android:layout_height="425dp"
             android:id="@+id/databaseList"
             android:animateLayoutChanges="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_weight="0.96" />
+            android:layout_alignParentStart="true" />
 
-        <EditText
-            android:layout_width="266dp"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/sendMsgBox"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="5dp"
-            android:layout_marginRight="15dp"
-            android:shadowColor="@android:color/background_dark" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/sendMsgBox"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:hint="@string/sendMessageeText"
+                android:shadowColor="@android:color/background_dark"
+                android:layout_gravity="bottom"
+                android:layout_weight="1" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_gravity="bottom|left|end"
+                app:srcCompat="@drawable/ic_menu_send"
+                app:backgroundTint="@android:color/holo_red_light"
+                app:rippleColor="?android:attr/detailsElementBackground"
+                android:baselineAlignBottom="true"
+                app:elevation="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.42"
+                android:layout_marginTop="20dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
