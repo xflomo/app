@@ -3,24 +3,22 @@ package de.fb_dev.app.eduardflo;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -75,6 +73,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("login", 0); // 0 - for private mode
+        if( pref.getString("email", null) != null &&  pref.getString("password", null) != null){
+            startActivity(new Intent(LoginActivity.this, NavAction.class));
+        }
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -102,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
@@ -334,6 +338,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true and go to NavAction.
+
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("login", 0); // 0 - for private mode
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    // Safe Logindata in Session
+                    // TODO Remove Password just safe other Userdata
+
+                    editor.putString("email", pieces[0]); // Storing string
+                    editor.putString("password", pieces[1]); // Storing string
+                    editor.commit();
+
                     startActivity(new Intent(LoginActivity.this, NavAction.class));
                     return pieces[1].equals(mPassword);
                 }

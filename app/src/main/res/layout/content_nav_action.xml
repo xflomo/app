@@ -13,22 +13,32 @@
     tools:context="de.fb_dev.app.eduardflo.NavAction"
     tools:showIn="@layout/app_bar_nav_action">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="49dp"
-        android:background="@drawable/side_nav_bar"
-        android:id="@+id/databaseList" />
+        android:weightSum="1"
+        android:layout_alignParentBottom="true">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="419dp"
+            android:id="@+id/databaseList"
+            android:animateLayoutChanges="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.96" />
+
+        <EditText
+            android:layout_width="266dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/sendMsgBox"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="5dp"
+            android:layout_marginRight="15dp" />
+    </LinearLayout>
+
 </RelativeLayout>
