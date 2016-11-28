@@ -7,20 +7,23 @@
     android:fitsSystemWindows="true"
     tools:context="de.fb_dev.app.eduardflo.NavAction">
 
-    <include layout="@layout/content_nav_action" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_menu_send"
+        app:backgroundTint="@android:color/holo_red_light"
+        app:rippleColor="?android:attr/detailsElementBackground"
+        android:baselineAlignBottom="true"
+        app:elevation="0dp" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:backgroundTint="@color/colorPrimaryDark">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,5 +33,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_nav_action" />
 
 </android.support.design.widget.CoordinatorLayout>

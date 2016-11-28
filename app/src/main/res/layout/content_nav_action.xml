@@ -38,7 +38,8 @@
             android:id="@+id/sendMsgBox"
             android:layout_marginTop="15dp"
             android:paddingLeft="5dp"
-            android:layout_marginRight="15dp" />
+            android:layout_marginRight="15dp"
+            android:shadowColor="@android:color/background_dark" />
     </LinearLayout>
 
 </RelativeLayout>
