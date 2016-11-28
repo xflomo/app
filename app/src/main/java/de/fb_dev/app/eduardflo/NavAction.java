@@ -39,7 +39,10 @@ public class NavAction extends AppCompatActivity
 
         // MYSQL Access
         ListView databaseList = (ListView) findViewById(R.id.databaseList);
-        final Downloader d=new Downloader(this ,"http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames",databaseList);
+        final Context context        = this;
+        final String address    = "http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames";
+        final ListView dbList   = databaseList;
+        //final Downloader d=new Downloader(this ,"http://app.fb-dev.de/app?appVerifier=eduardFlorianMotherfuckergang&appCall=getUsernames",databaseList);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +50,7 @@ public class NavAction extends AppCompatActivity
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                d.execute();
+                new Downloader(context, address, dbList).execute();
             }
         });
 
